@@ -1,0 +1,9 @@
+AddS64 :: (a: S64, b: S64)(result: S64){
+  result: a + b
+}
+
+Main :: () {
+  test: 2 + 2
+}
+
+#define PGD_Rectangle Recntagle 

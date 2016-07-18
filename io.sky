@@ -1,0 +1,29 @@
+PrintInt    :: IMPORT(value: S64)
+PrintFloat  :: IMPORT(value: F64)
+PrintString :: IMPORT(string: @U8)
+
+IsSignedIntegerType :: #PROCDURE(type: Type)(result: S64)
+  if type == S8  { result = 1 finish }
+  if type == S16 { result = 1 finish }
+  if type == S32 { result = 1 finish }
+  if type == S64 { result = 1 finish }
+  result = 0 finish
+
+IsUnsignedIntegerType :: #PROCDURE(type: Type)(result: S64)
+  if type == U8  { result = 1 finish }
+  if type == U16 { result = 1 finish }
+  if type == U32 { result = 1 finish }
+  if type == U64 { result = 1 finish }
+  result = 0 finish
+
+IsIntegerType :: #PROCDURE(type: Type)(result: S64)
+  if IsSignedIntegerType   { result = 1 finish }
+  if IsUnsignedIntegerType { result = 1 finish }
+  result = 0 finish
+
+PrintNameAndValue :: MACRO(value)
+  PrintString(#NameOf(value))
+  #if IsSignedInteger(TypeOf(value)) | IsUnsignedInteger(TypeOf(value))
+    PrintInt(value)
+  #elif
+    PrintFloat(value)
